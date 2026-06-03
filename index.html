@@ -551,7 +551,8 @@ footer{
         </span>
       </div>
 
-      <div class="client-card" onclick="openVideo('videos/https://drive.google.com/file/d/1bhL5h8qdyyiajjYtzozcwBs6SsfbRCKZ/view?usp=drive_link.mp4', 'Kiko Veículos')">
+      <div class="client-card" onclick="openVideo('https://drive.google.com/file/d/1bhL5h8qdyyiajjYtzozcwBs6SsfbRCKZ/preview', 'Kiko Veículos')"
+
         <p class="client-num">05</p>
         <p class="client-name">Kiko Veículos</p>
         <span class="client-play">
@@ -674,16 +675,40 @@ function handleSubmit(e){
   window.open(`https://wa.me/5551991484574?text=${encodeURIComponent(text)}`,'_blank');
 }
 
-function openVideo(src, title) {
-  document.getElementById('videoSource').src = src;
+Sim, exatamente aí! Substitui tudo isso pelo código abaixo:
+javascriptfunction openVideo(src, title) {
   document.getElementById('videoTitle').textContent = title;
-  document.getElementById('videoPlayer').load();
+
+  const player = document.getElementById('videoPlayer');
+  let iframe = document.getElementById('videoIframe');
+
+  if (!iframe) {
+    iframe = document.createElement('iframe');
+    iframe.id = 'videoIframe';
+    iframe.style = 'width:100%;aspect-ratio:16/9;border:none;border-radius:4px;';
+    iframe.allowFullscreen = true;
+    player.parentNode.insertBefore(iframe, player);
+  }
+
+  if (src.includes('drive.google.com')) {
+    player.style.display = 'none';
+    iframe.style.display = 'block';
+    iframe.src = src;
+  } else {
+    iframe.style.display = 'none';
+    player.style.display = 'block';
+    document.getElementById('videoSource').src = src;
+    player.load();
+  }
+
   document.getElementById('videoModal').classList.add('active');
   document.body.style.overflow = 'hidden';
 }
 function closeVideo(e) {
   if (e && e.target !== document.getElementById('videoModal')) return;
   document.getElementById('videoPlayer').pause();
+  const iframe = document.getElementById('videoIframe');
+  if (iframe) iframe.src = '';
   document.getElementById('videoModal').classList.remove('active');
   document.body.style.overflow = '';
 }
