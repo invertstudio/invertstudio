@@ -515,7 +515,7 @@ footer{
     <h2 class="sec-title reveal">Quem confia<br>na Invert Studio.</h2>
     <div class="clients-grid reveal">
 
-      <div class="client-card" onclick="openVideo('https://www.youtube.com/embed/AXV5dRYOPCU', 'Dkaavec')">
+      <div class="client-card" onclick="openVideo('videos/dkaavec.mp4', 'Dkaavec')">
         <p class="client-num">01</p>
         <p class="client-name">Dkaavec</p>
         <span class="client-play">
@@ -690,20 +690,16 @@ javascriptfunction openVideo(src, title) {
     player.parentNode.insertBefore(iframe, player);
   }
 
- if (
-  src.includes('drive.google.com') ||
-  src.includes('youtube.com') ||
-  src.includes('youtu.be')
-) {
-  player.style.display = 'none';
-  iframe.style.display = 'block';
-  iframe.src = src;
-} else {
-  iframe.style.display = 'none';
-  player.style.display = 'block';
-  document.getElementById('videoSource').src = src;
-  player.load();
-}
+  if (src.includes('drive.google.com')) {
+    player.style.display = 'none';
+    iframe.style.display = 'block';
+    iframe.src = src;
+  } else {
+    iframe.style.display = 'none';
+    player.style.display = 'block';
+    document.getElementById('videoSource').src = src;
+    player.load();
+  }
 
   document.getElementById('videoModal').classList.add('active');
   document.body.style.overflow = 'hidden';
