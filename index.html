@@ -354,6 +354,41 @@ footer{
   .clients-grid{grid-template-columns:1fr 1fr}
   .hero h1{font-size:2.5rem}
 }
+
+/* PORTFÓLIO */
+.portfolio-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:24px;
+  margin-top:2rem;
+}
+.portfolio-item{
+  background:#111;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  overflow:hidden;
+}
+.portfolio-item h3{
+  padding:14px 18px;
+  font-size:1rem;
+}
+.portfolio-video{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%;
+}
+.portfolio-video iframe{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+}
+@media(max-width:768px){
+  .portfolio-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -363,6 +398,7 @@ footer{
   <ul class="nav-links">
     <li><a href="#sobre">Quem somos</a></li>
     <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
     <li><a href="#clientes">Clientes</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -373,6 +409,7 @@ footer{
   <button class="mobile-close" onclick="toggleNav()">✕</button>
   <a href="#sobre" onclick="toggleNav()">Quem somos</a>
   <a href="#servicos" onclick="toggleNav()">Serviços</a>
+  <a href="#portfolio" onclick="toggleNav()">Portfólio</a>
   <a href="#clientes" onclick="toggleNav()">Clientes</a>
   <a href="#contato" onclick="toggleNav()">Contato</a>
 </div>
@@ -446,6 +483,43 @@ footer{
 </section>
 
 <!-- CLIENTES -->
+
+<!-- PORTFÓLIO -->
+<section id="portfolio">
+  <p class="sec-label reveal">Portfólio</p>
+  <h2 class="sec-title reveal">Alguns trabalhos recentes</h2>
+
+  <div class="portfolio-grid">
+    <div class="portfolio-item reveal">
+      <h3>Dkaavec Auto Peças</h3>
+      <div class="portfolio-video">
+        <iframe src="https://www.youtube.com/embed/AXV5dRYOPCU" title="Dkaavec Auto Peças" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <h3>Rota 409</h3>
+      <div class="portfolio-video">
+        <iframe src="https://www.youtube.com/embed/wImMW11QUGQ" title="Rota 409" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <h3>Kiko Veículos</h3>
+      <div class="portfolio-video">
+        <iframe src="https://www.youtube.com/embed/Uuj805QM7JQ" title="Kiko Veículos" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="portfolio-item reveal">
+      <h3>HG Smart</h3>
+      <div class="portfolio-video">
+        <iframe src="https://www.youtube.com/embed/mKIf5ywqQyc" title="HG Smart" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="clients" id="clientes">
   <div class="clients-bg"></div>
   <div class="clients-inner">
