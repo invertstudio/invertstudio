@@ -247,17 +247,68 @@ section{padding:5.5rem 3rem;position:relative}
 }
 .client-card{
   background:rgba(0,0,0,0.85);padding:2rem 1.8rem;
-  transition:background .25s;
+  transition:background .25s,transform .25s;
+  position:relative;overflow:hidden;
 }
+.client-card.has-video{cursor:pointer}
+.client-card.has-video:hover{background:rgba(93,214,44,0.06);transform:translateY(-2px)}
 .client-card:hover{background:rgba(10,10,10,0.95)}
 .client-num{
   font-family:'Poppins',sans-serif;
   font-size:0.6rem;font-weight:600;letter-spacing:0.15em;
   color:var(--accent);margin-bottom:0.7rem;
+  display:flex;align-items:center;justify-content:space-between;
 }
 .client-name{
   font-family:'DM Sans',sans-serif;
   font-weight:700;font-size:1rem;letter-spacing:-0.01em;color:var(--text);
+}
+.client-play{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:18px;height:18px;border-radius:50%;
+  border:1px solid var(--green);color:var(--green);
+  font-size:0.5rem;opacity:0;transform:scale(0.8);
+  transition:opacity .25s,transform .25s;
+}
+.client-card.has-video:hover .client-play{opacity:1;transform:scale(1)}
+
+/* ── VIDEO MODAL ── */
+.video-modal{
+  position:fixed;inset:0;z-index:200;
+  display:none;align-items:center;justify-content:center;
+  padding:2rem;
+  background:rgba(0,0,0,0.92);
+  backdrop-filter:blur(6px);
+}
+.video-modal.active{display:flex}
+.video-modal-inner{
+  position:relative;width:100%;max-width:880px;
+  animation:fadeUp .35s ease forwards;
+}
+.video-modal-label{
+  font-family:'Poppins',sans-serif;
+  font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.8rem;
+}
+.video-modal-frame{
+  position:relative;width:100%;padding-top:56.25%;
+  background:#000;border:1px solid var(--border);
+}
+.video-modal-frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;border:0;
+}
+.video-modal-close{
+  position:absolute;top:-2.6rem;right:0;
+  background:none;border:1px solid var(--border);
+  color:var(--text);width:32px;height:32px;
+  border-radius:50%;cursor:pointer;font-size:0.9rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s;
+}
+.video-modal-close:hover{background:rgba(243,243,243,0.08);border-color:var(--accent)}
+@media(max-width:600px){
+  .video-modal{padding:1.2rem}
+  .video-modal-close{top:-2.4rem;right:0}
 }
 
 /* ── CONTATO ── */
@@ -355,40 +406,6 @@ footer{
   .hero h1{font-size:2.5rem}
 }
 
-/* PORTFÓLIO */
-.portfolio-grid{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:24px;
-  margin-top:2rem;
-}
-.portfolio-item{
-  background:#111;
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:16px;
-  overflow:hidden;
-}
-.portfolio-item h3{
-  padding:14px 18px;
-  font-size:1rem;
-}
-.portfolio-video{
-  position:relative;
-  width:100%;
-  padding-bottom:56.25%;
-}
-.portfolio-video iframe{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-}
-@media(max-width:768px){
-  .portfolio-grid{
-    grid-template-columns:1fr;
-  }
-}
-
 </style>
 </head>
 <body>
@@ -398,7 +415,6 @@ footer{
   <ul class="nav-links">
     <li><a href="#sobre">Quem somos</a></li>
     <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#portfolio">Portfólio</a></li>
     <li><a href="#clientes">Clientes</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
@@ -409,7 +425,6 @@ footer{
   <button class="mobile-close" onclick="toggleNav()">✕</button>
   <a href="#sobre" onclick="toggleNav()">Quem somos</a>
   <a href="#servicos" onclick="toggleNav()">Serviços</a>
-  <a href="#portfolio" onclick="toggleNav()">Portfólio</a>
   <a href="#clientes" onclick="toggleNav()">Clientes</a>
   <a href="#contato" onclick="toggleNav()">Contato</a>
 </div>
@@ -483,57 +498,30 @@ footer{
 </section>
 
 <!-- CLIENTES -->
-
-<!-- PORTFÓLIO -->
-<section id="portfolio">
-  <p class="sec-label reveal">Portfólio</p>
-  <h2 class="sec-title reveal">Alguns trabalhos recentes</h2>
-
-  <div class="portfolio-grid">
-    <div class="portfolio-item reveal">
-      <h3>Dkaavec Auto Peças</h3>
-      <div class="portfolio-video">
-        <iframe src="https://www.youtube.com/embed/AXV5dRYOPCU" title="Dkaavec Auto Peças" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="portfolio-item reveal">
-      <h3>Rota 409</h3>
-      <div class="portfolio-video">
-        <iframe src="https://www.youtube.com/embed/wImMW11QUGQ" title="Rota 409" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="portfolio-item reveal">
-      <h3>Kiko Veículos</h3>
-      <div class="portfolio-video">
-        <iframe src="https://www.youtube.com/embed/Uuj805QM7JQ" title="Kiko Veículos" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="portfolio-item reveal">
-      <h3>HG Smart</h3>
-      <div class="portfolio-video">
-        <iframe src="https://www.youtube.com/embed/mKIf5ywqQyc" title="HG Smart" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="clients" id="clientes">
   <div class="clients-bg"></div>
   <div class="clients-inner">
     <p class="sec-label reveal">Clientes</p>
     <h2 class="sec-title reveal">Quem confia<br>na Invert Studio.</h2>
     <div class="clients-grid reveal">
-      <div class="client-card"><p class="client-num">01</p><p class="client-name">Dkaavec</p></div>
-      <div class="client-card"><p class="client-num">02</p><p class="client-name">Rota 409</p></div>
-      <div class="client-card"><p class="client-num">03</p><p class="client-name">Mecânica Klein</p></div>
-      <div class="client-card"><p class="client-num">04</p><p class="client-name">HG Smart</p></div>
-      <div class="client-card"><p class="client-num">05</p><p class="client-name">Kiko Veículos</p></div>
+      <div class="client-card has-video" data-video="https://www.youtube.com/embed/AXV5dRYOPCU" onclick="openClientVideo(this)"><p class="client-num">01<span class="client-play">▶</span></p><p class="client-name">Dkaavec</p></div>
+      <div class="client-card has-video" data-video="https://www.youtube.com/embed/wImMW11QUGQ" onclick="openClientVideo(this)"><p class="client-num">02<span class="client-play">▶</span></p><p class="client-name">Rota 409</p></div>
+      <div class="client-card" data-video="" onclick="openClientVideo(this)"><p class="client-num">03<span class="client-play">▶</span></p><p class="client-name">Mecânica Klein</p></div>
+      <div class="client-card has-video" data-video="https://www.youtube.com/embed/mKIf5ywqQyc" onclick="openClientVideo(this)"><p class="client-num">04<span class="client-play">▶</span></p><p class="client-name">HG Smart</p></div>
+      <div class="client-card has-video" data-video="https://youtube.com/embed/Uuj805QM7JQ?si=8siVehuIdSxDErjC" onclick="openClientVideo(this)"><p class="client-num">05<span class="client-play">▶</span></p><p class="client-name">Kiko Veículos</p></div>
     </div>
   </div>
 </section>
+
+<!-- VIDEO MODAL -->
+<div class="video-modal" id="videoModal" onclick="if(event.target===this)closeClientVideo()">
+  <div class="video-modal-inner">
+    <p class="video-modal-label" id="videoModalLabel">Cliente</p>
+    <button class="video-modal-close" onclick="closeClientVideo()" aria-label="Fechar">✕</button>
+    <div class="video-modal-frame">
+      <iframe id="videoModalFrame" src="" title="Vídeo do cliente" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
 
 <!-- CONTATO -->
 <section class="contact" id="contato">
@@ -613,6 +601,24 @@ const obs=new IntersectionObserver((entries)=>{
   entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),i*60);obs.unobserve(e.target)}})
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+function openClientVideo(card){
+  const url=card.getAttribute('data-video');
+  if(!url)return;
+  const name=card.querySelector('.client-name').textContent;
+  document.getElementById('videoModalLabel').textContent=name;
+  document.getElementById('videoModalFrame').src=url+(url.includes('?')?'&':'?')+'autoplay=1';
+  document.getElementById('videoModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeClientVideo(){
+  document.getElementById('videoModal').classList.remove('active');
+  document.getElementById('videoModalFrame').src='';
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape')closeClientVideo();
+});
 function handleSubmit(e){
   e.preventDefault();
   const nome=document.getElementById('nome').value;
