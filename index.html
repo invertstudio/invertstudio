@@ -354,68 +354,6 @@ footer{
   .clients-grid{grid-template-columns:1fr 1fr}
   .hero h1{font-size:2.5rem}
 }
-
-/* client play button */
-.client-card{cursor:pointer;position:relative}
-.client-play{
-  display:inline-flex;align-items:center;gap:0.4rem;
-  margin-top:0.9rem;
-  font-family:'Poppins',sans-serif;
-  font-size:0.68rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
-  color:var(--accent);
-  transition:color .2s;
-}
-.client-play svg{width:16px;height:16px;color:var(--accent);transition:color .2s}
-.client-card:hover .client-play,
-.client-card:hover .client-play svg{color:var(--text)}
-
-/* VIDEO MODAL */
-.video-modal{
-  display:none;
-  position:fixed;inset:0;z-index:300;
-  background:rgba(0,0,0,0.92);
-  backdrop-filter:blur(8px);
-  align-items:center;justify-content:center;
-  padding:1.5rem;
-}
-.video-modal.active{display:flex}
-.video-modal-inner{
-  width:100%;max-width:900px;
-  background:#0a0a0a;
-  border:1px solid var(--border);
-}
-.video-modal-header{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1rem 1.2rem;
-  border-bottom:1px solid var(--border);
-}
-.video-modal-title{
-  font-family:'DM Sans',sans-serif;
-  font-size:0.85rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
-  color:var(--text);
-}
-.video-modal-close{
-  background:none;border:none;cursor:pointer;
-  color:var(--muted);padding:4px;
-  transition:color .2s;
-}
-.video-modal-close:hover{color:var(--text)}
-.video-modal-close svg{width:18px;height:18px;display:block}
-#videoPlayer{
-  width:100%;display:block;
-  max-height:70vh;
-  background:#000;
-}
-.video-modal-hint{
-  font-family:'Poppins',sans-serif;
-  font-size:0.68rem;color:var(--muted2);
-  padding:0.7rem 1.2rem;text-align:center;
-}
-.video-modal-hint code{
-  background:rgba(118,118,118,0.12);
-  padding:0.1rem 0.4rem;border-radius:3px;
-  font-size:0.68rem;color:var(--accent);
-}
 </style>
 </head>
 <body>
@@ -514,69 +452,11 @@ footer{
     <p class="sec-label reveal">Clientes</p>
     <h2 class="sec-title reveal">Quem confia<br>na Invert Studio.</h2>
     <div class="clients-grid reveal">
-
-      <div class="client-card" onclick="openVideo('videos/dkaavec.mp4', 'Dkaavec')">
-        <p class="client-num">01</p>
-        <p class="client-name">Dkaavec</p>
-        <span class="client-play">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
-          Ver vídeo
-        </span>
-      </div>
-
-      <div class="client-card" onclick="openVideo('videos/rota409.mp4', 'Rota 409')">
-        <p class="client-num">02</p>
-        <p class="client-name">Rota 409</p>
-        <span class="client-play">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
-          Ver vídeo
-        </span>
-      </div>
-
-      <div class="client-card" onclick="openVideo('videos/mecanica-klein.mp4', 'Mecânica Klein')">
-        <p class="client-num">03</p>
-        <p class="client-name">Mecânica Klein</p>
-        <span class="client-play">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
-          Ver vídeo
-        </span>
-      </div>
-
-      <div class="client-card" onclick="openVideo('videos/hg-smart.mp4', 'HG Smart')">
-        <p class="client-num">04</p>
-        <p class="client-name">HG Smart</p>
-        <span class="client-play">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
-          Ver vídeo
-        </span>
-      </div>
-
-<div class="client-card" onclick="openVideo('https://drive.google.com/file/d/1bhL5h8qdyyiajjYtzozcwBs6SsfbRCKZ/preview', 'Kiko Veículos')">
-
-        <p class="client-num">05</p>
-        <p class="client-name">Kiko Veículos</p>
-        <span class="client-play">
-          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><polygon points="10,8 16,12 10,16" fill="currentColor"/></svg>
-          Ver vídeo
-        </span>
-      </div>
-
-    </div>
-
-    <!-- VIDEO MODAL -->
-    <div class="video-modal" id="videoModal" onclick="closeVideo(event)">
-      <div class="video-modal-inner">
-        <div class="video-modal-header">
-          <span class="video-modal-title" id="videoTitle"></span>
-          <button class="video-modal-close" onclick="closeVideo()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <video id="videoPlayer" controls playsinline>
-          <source id="videoSource" src="" type="video/mp4">
-        </video>
-        <p class="video-modal-hint">Coloque o arquivo .mp4 na pasta <code>videos/</code> ao lado do index.html</p>
-      </div>
+      <div class="client-card"><p class="client-num">01</p><p class="client-name">Dkaavec</p></div>
+      <div class="client-card"><p class="client-num">02</p><p class="client-name">Rota 409</p></div>
+      <div class="client-card"><p class="client-num">03</p><p class="client-name">Mecânica Klein</p></div>
+      <div class="client-card"><p class="client-num">04</p><p class="client-name">HG Smart</p></div>
+      <div class="client-card"><p class="client-num">05</p><p class="client-name">Kiko Veículos</p></div>
     </div>
   </div>
 </section>
@@ -602,7 +482,7 @@ footer{
         </div>
         <div class="contact-row">
           <div class="c-icon"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div>
-          <a href="https://www.facebook.com/invertstudi0" target="_blank">Invert Studio</a>
+          <a href="https://facebook.com/invertstudi0" target="_blank">Invert Studio</a>
         </div>
       </div>
     </div>
@@ -614,7 +494,7 @@ footer{
           <div class="field"><label>Empresa</label><input type="text" id="empresa" placeholder="Nome da empresa"></div>
         </div>
         <div class="form-row">
-          <div class="field"><label>WhatsApp</label><input type="tel" id="whatsapp" placeholder="(51) 99148-4574" required></div>
+          <div class="field"><label>WhatsApp</label><input type="tel" id="whatsapp" placeholder="(55) 9148-4574" required></div>
           <div class="field">
             <label>Serviço desejado</label>
             <select id="servico" required>
@@ -672,47 +552,8 @@ function handleSubmit(e){
   text+=`*WhatsApp:* ${whatsapp}\n`;
   text+=`*Serviço:* ${servico}\n`;
   if(msg)text+=`*Projeto:* ${msg}`;
-  window.open(`https://wa.me/5551991484574?text=${encodeURIComponent(text)}`,'_blank');
+  window.open(`https://wa.me/5551999999999?text=${encodeURIComponent(text)}`,'_blank');
 }
-
-Sim, exatamente aí! Substitui tudo isso pelo código abaixo:
-javascriptfunction openVideo(src, title) {
-  document.getElementById('videoTitle').textContent = title;
-
-  const player = document.getElementById('videoPlayer');
-  let iframe = document.getElementById('videoIframe');
-
-  if (!iframe) {
-    iframe = document.createElement('iframe');
-    iframe.id = 'videoIframe';
-    iframe.style = 'width:100%;aspect-ratio:16/9;border:none;border-radius:4px;';
-    iframe.allowFullscreen = true;
-    player.parentNode.insertBefore(iframe, player);
-  }
-
-  if (src.includes('drive.google.com')) {
-    player.style.display = 'none';
-    iframe.style.display = 'block';
-    iframe.src = src;
-  } else {
-    iframe.style.display = 'none';
-    player.style.display = 'block';
-    document.getElementById('videoSource').src = src;
-    player.load();
-  }
-
-  document.getElementById('videoModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeVideo(e) {
-  if (e && e.target !== document.getElementById('videoModal')) return;
-  document.getElementById('videoPlayer').pause();
-  const iframe = document.getElementById('videoIframe');
-  if (iframe) iframe.src = '';
-  document.getElementById('videoModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', e => { if(e.key === 'Escape') closeVideo(); });
 </script>
 </body>
 </html>
